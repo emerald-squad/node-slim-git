@@ -24,6 +24,6 @@ jobs:
       source: node-slim-git
   - put: docker-hub
     params:
-      build: source
+      build: node-slim-git
       tag: version/version
       tag_as_latest: true
