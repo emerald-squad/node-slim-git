@@ -19,7 +19,7 @@ jobs:
     - get: node-slim-git
       trigger: true
   - task: get-version
-    file: alpine-scripting-source/ci/tasks/get-version.yml
+    file: node-slim-git/ci/tasks/get-version.yml
     input_mapping:
       source: node-slim-git
   - put: docker-hub
