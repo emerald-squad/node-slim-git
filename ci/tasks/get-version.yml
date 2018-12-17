@@ -17,4 +17,4 @@ run:
     - -exc
     - |
       cd source
-      ci/tasks/version.sh > ../version/version
+      ci/tasks/version.sh $(cat VERSION) > ../version/version
