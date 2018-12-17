@@ -1,0 +1,29 @@
+resources:
+- name: node-slim-git
+  type: git
+  source: 
+    uri: https://github.com/emerald-squad/node-slim-git.git
+    branch: 'master'
+
+- name: docker-hub
+  type: docker-image
+  source:
+    repository: emeraldsquad/node-slim-git
+    username: ((docker-hub-username))
+    password: ((docker-hub-password))
+
+jobs:
+- name: publish
+  plan:
+  - aggregate:
+    - get: node-slim-git
+      trigger: true
+  - task: get-version
+    file: alpine-scripting-source/ci/tasks/get-version.yml
+    input_mapping:
+      source: node-slim-git
+  - put: docker-hub
+    params:
+      build: source
+      tag: version/version
+      tag_as_latest: true
